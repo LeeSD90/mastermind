@@ -5,7 +5,8 @@ require './logic.rb'
 	
 
 	def initialize()
-		@code = get_random_code
+		@code = Logic.get_random_code
+		puts @code
 		play
 	end
 
@@ -23,20 +24,6 @@ require './logic.rb'
 				end
 			end
 		}
-	end
-
-	def get_random_code()
-		code = Array.new(4, -1)
-
-		code.each_with_index{ |v, i| 
-			assigning = true
-			while(assigning)
-				num = rand(0..5)
-				if(!code.include?(num)) then code[i] = num; assigning = false; end
-			end
-		}
-
-		return code
 	end
 
 end

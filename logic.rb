@@ -7,4 +7,18 @@ module Logic
 		end
 	end
 
+	def Logic.get_random_code()
+		code = Array.new(4, -1)
+
+		code.each_with_index{ |v, i| 
+			assigning = true
+			while(assigning)
+				num = rand(0..5)
+				if(!code.include?(num)) then code[i] = num; assigning = false; end
+			end
+		}
+
+		return code
+	end
+
 end
