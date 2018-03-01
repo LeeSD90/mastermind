@@ -22,7 +22,7 @@ The Mastermind selects a 4 colour combination and the codebreaker attempts to gu
 HEREDOC
 
 while(running)
-	puts "1.New Game\n2.Exit".colorize(:green)
+	puts "\n1.New Game\n2.Exit".colorize(:green)
 	puts "\n\n--- Select an option ---\n\n".colorize(:red)
 
 	case gets.chomp
