@@ -26,14 +26,14 @@ module Logic
 		color_correct = 0
 		index_correct = 0
 
-		code.each_with_index {|v, i| if(chars.include?(v)) then 
+		code.each {|v| if(chars.include?(v)) then
 										color_correct += 1;
 										if(chars.index(v) == code.index(v)) then
 											index_correct += 1;
 										end
 								end
 							 }
-							 
+
 		return "Colors correct: " + color_correct.to_s + "\nPosition correct: " + index_correct.to_s
 	end
 
