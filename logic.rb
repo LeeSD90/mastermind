@@ -33,8 +33,8 @@ module Logic
 										end
 								end
 							 }
-
-		return "Colors correct: " + color_correct.to_s + "\nPosition correct: " + index_correct.to_s
+		return color_correct, index_correct
+		
 	end
 
 end

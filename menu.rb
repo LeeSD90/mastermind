@@ -16,7 +16,7 @@ puts <<-'HEREDOC'
  |_|  |_/_/    \_\_____/   |_|  |______|_|  \_\_|  |_|_____|_| \_|_____/ 
 
 Mastermind is a code-breaking game for two players. 
-The Mastermind selects a 4 colour combination and the codebreaker attempts to guess it within 12 turns
+The Mastermind selects a 4 color combination and the codebreaker attempts to guess it within 12 turns
 
 
 HEREDOC
