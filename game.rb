@@ -4,9 +4,14 @@ require './logic.rb'
 	@@colors = ["R", "G", "B", "Y", "P", "C"]
 	
 
-	def initialize()
-		@code = Logic.get_random_code(@@colors)
-		play
+	def initialize(mode)
+		case mode
+		when 1
+			@code = Logic.get_random_code(@@colors)
+			play
+		when 2
+			
+		end
 	end
 
 	private

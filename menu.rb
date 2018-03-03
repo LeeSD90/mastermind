@@ -27,7 +27,21 @@ while(running)
 
 	case gets.chomp
 	when "1"
-		new_game = Game.new()
+		puts "\nWho will be the codebreaker?\n".colorize(:green)
+		puts "\n1.Player\n2.AI".colorize(:green)
+		puts "\n\n--- Select an option ---\n\n".colorize(:red)
+		loop do
+			
+			case gets.chomp
+			when "1"
+				new_game = Game.new(1)
+				break
+			when "2"
+				new_game = Game.new(2)
+				break
+			else puts "\nPlease select 1 or 2"
+			end
+		end
 	when "2"
 		running = false
 	end
