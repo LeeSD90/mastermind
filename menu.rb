@@ -31,7 +31,6 @@ while(running)
 		puts "\n1.Player\n2.AI".colorize(:green)
 		puts "\n\n--- Select an option ---\n\n".colorize(:red)
 		loop do
-			
 			case gets.chomp
 			when "1"
 				new_game = Game.new(1)

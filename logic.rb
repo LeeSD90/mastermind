@@ -37,4 +37,7 @@ module Logic
 		
 	end
 
+	def Logic.ai_guess()
+	end
+
 end
