@@ -1,6 +1,6 @@
 module Logic
 
-	def Logic.check_guess(guess)
+	def Logic.check_entry(guess)
 		if((guess =~ /^(?!.*(.).*\1)[RGBYPC]{4}$/) != nil) then 
 			return true
 		else return false
