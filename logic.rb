@@ -37,7 +37,8 @@ module Logic
 		
 	end
 
-	def Logic.ai_guess()
+	def Logic.ai_guess(guess, colors, result)
+		return Logic.get_random_code(colors).join
 	end
 
 end

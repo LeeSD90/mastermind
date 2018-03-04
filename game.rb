@@ -11,10 +11,11 @@ require './logic.rb'
 	private
 	
 	def play(mode)
-		puts "\nColors : " + "R".colorize(:red) + " G".colorize(:green) + " B".colorize(:blue) + " Y".colorize(:yellow) + " P".colorize(:light_magenta) + " C".colorize(:cyan)
+		puts "\nColors : " + "Red".colorize(:red) + " Green".colorize(:green) + " Blue".colorize(:blue) + " Yellow".colorize(:yellow) + " Purple".colorize(:magenta) + " Cyan".colorize(:cyan)
 		mode === 1 ? mode_text = "guess" : mode_text = "enter"
 		puts "#{mode_text} a 4-color combination\nFor example, to #{mode_text} red, green, blue, yellow enter RGBY\n".capitalize!
 		@code = set_code(mode)
+		@guess = []
 
 		i = 1
 		catch :success do	
@@ -22,11 +23,9 @@ require './logic.rb'
 				loop do
 					case mode
 					when 1
-						guess = gets.chomp.upcase!
-						if(Logic.check_entry(guess)) then
-							print guess
-							print @code
-							result = Logic.compare_guess(guess, @code)
+						@guess = gets.chomp.upcase!
+						if(Logic.check_entry(@guess)) then
+							result = Logic.compare_guess(@guess, @code)
 							puts "\nColors correct: " + result[0].to_s + "\nPosition correct: " + result[1].to_s + "\nGuesses remaining: " + (12 - i).to_s
 							throw :success if result[1] == 4
 							i += 1
@@ -34,12 +33,12 @@ require './logic.rb'
 						else input_error
 						end
 					when 2
-						guess = Logic.get_random_code(@@colors).join
-						result = Logic.compare_guess(guess, @code)
+						i === 1 ? @guess = Logic.get_random_code(@@colors).join : @guess = Logic.ai_guess(@guess, @@colors, result)
+						result = Logic.compare_guess(@guess, @code)
 						puts "\n\nColors correct: " + result[0].to_s + "\nPosition correct: " + result[1].to_s + "\nGuesses remaining: " + (12 - i).to_s
 						throw :success if result[1] == 4
 						i += 1
-						break
+						#break
 					end
 					
 				end

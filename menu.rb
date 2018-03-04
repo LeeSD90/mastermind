@@ -24,7 +24,6 @@ HEREDOC
 while(running)
 	puts "\n1.New Game\n2.Exit".colorize(:green)
 	puts "\n\n--- Select an option ---\n\n".colorize(:red)
-
 	case gets.chomp
 	when "1"
 		puts "\nWho will be the codebreaker?\n".colorize(:green)
