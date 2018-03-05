@@ -26,7 +26,7 @@ require './logic.rb'
 						@guess = gets.chomp.upcase!
 						if(Logic.check_entry(@guess)) then
 							result = Logic.compare_guess(@guess, @code)
-							puts "\nColors correct: " + result[0].to_s + "\nPosition correct: " + result[1].to_s + "\nGuesses remaining: " + (12 - i).to_s
+							puts "\nThe codebreaker guessed " + @guess + "\nColors correct: " + result[0].to_s + "\nPosition correct: " + result[1].to_s + "\nGuesses remaining: " + (12 - i).to_s
 							throw :success if result[1] == 4
 							i += 1
 							break
