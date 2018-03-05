@@ -7,6 +7,17 @@ module Logic
 		end
 	end
 
+def Logic.get_random_code(colors)
+	code = Array.new(4, -1)
+
+	code.each_with_index{|v, i|
+		code[i] = colors[rand(0..5)]
+	}
+
+	return code
+end
+
+=begin
 	def Logic.get_random_code(colors)
 		code = Array.new(4, -1)
 
@@ -20,6 +31,7 @@ module Logic
 
 		return code
 	end
+=end
 
 	def Logic.compare_guess(guess, code)
 		chars = guess.split('')

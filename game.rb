@@ -16,32 +16,43 @@ require './logic.rb'
 		puts "#{mode_text} a 4-color combination\nFor example, to #{mode_text} red, green, blue, yellow enter RGBY\n".capitalize!
 		@code = set_code(mode)
 		@guess = []
+		result = []
 
 		i = 1
 		catch :success do	
-			12.times{
+			10002.times{ #todo change
 				loop do
 					case mode
 					when 1
 						@guess = gets.chomp.upcase!
 						if(Logic.check_entry(@guess)) then
+=begin
 							result = Logic.compare_guess(@guess, @code)
 							puts "\nThe codebreaker guessed " + @guess + "\nColors correct: " + result[0].to_s + "\nPosition correct: " + result[1].to_s + "\nGuesses remaining: " + (12 - i).to_s
 							throw :success if result[1] == 4
 							i += 1
+=end
 							break
 						else input_error
 						end
 					when 2
 						i === 1 ? @guess = Logic.get_random_code(@@colors).join : @guess = Logic.ai_guess(@guess, @@colors, result)
+						break
+=begin
 						result = Logic.compare_guess(@guess, @code)
 						puts "\n\nColors correct: " + result[0].to_s + "\nPosition correct: " + result[1].to_s + "\nGuesses remaining: " + (12 - i).to_s
 						throw :success if result[1] == 4
 						i += 1
-						#break
+=end
+						break
 					end
 					
 				end
+				result = Logic.compare_guess(@guess, @code)
+				puts "\nThe codebreaker guessed " + @guess + "\nColors correct: " + result[0].to_s + "\nPosition correct: " + result[1].to_s + "\nGuesses remaining: " + (12 - i).to_s
+				throw :success if result[1] == 4
+				i += 1
+
 			}
 			puts "\n**The codebreaker failed!**"
 			return nil
