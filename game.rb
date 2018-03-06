@@ -1,7 +1,8 @@
 class Game
 require 'colorize'
 require './logic.rb'
-	@@colors = ["R", "G", "B", "Y", "P", "C"]
+require './ai.rb'
+	$colors = ["R", "G", "B", "Y", "P", "C"]
 	
 
 	def initialize(mode)
@@ -12,7 +13,7 @@ require './logic.rb'
 	
 	def play(mode)
 		puts "\nColors : " + "Red".colorize(:red) + " Green".colorize(:green) + " Blue".colorize(:blue) + " Yellow".colorize(:yellow) + " Purple".colorize(:magenta) + " Cyan".colorize(:cyan)
-		mode === 1 ? mode_text = "guess" : mode_text = "enter"
+		mode === 1 ? mode_text = "guess" : (mode_text = "enter"; ai = Ai.new)
 		puts "#{mode_text} a 4-color combination\nFor example, to #{mode_text} red, green, blue, yellow enter RGBY\n".capitalize!
 		@code = set_code(mode)
 		@guess = []
@@ -20,7 +21,7 @@ require './logic.rb'
 
 		i = 1
 		catch :success do	
-			1200.times{ #todo change
+			12.times{
 				loop do
 					case mode
 					when 1
@@ -30,13 +31,14 @@ require './logic.rb'
 						else input_error
 						end
 					when 2
-						i === 1 ? @guess = Logic.get_random_code(@@colors).join : @guess = Logic.ai_guess(@guess, @@colors, result)
+						#i === 1 ? @guess = Logic.get_random_code($colors).join : @guess = ai.guess(@guess, $colors, result)
+						@guess = ai.guess(@guess, $colors, result)
 						break
 					end
 				end
 				result = Logic.compare_guess(@guess, @code)
 				puts "\n"
-				print @code
+				print @code #remove
 				puts "\nThe codebreaker guessed " + @guess + "\nColors correct: " + result[0].to_s + "\nPosition correct: " + result[1].to_s + "\nGuesses remaining: " + (12 - i).to_s
 				throw :success if result[1] == 4
 				i += 1
@@ -50,7 +52,7 @@ require './logic.rb'
 
 	def set_code(mode)
 		if(mode === 1) then
-			return Logic.get_random_code(@@colors)
+			return Logic.get_random_code($colors)
 		else
 			loop do
 				code = gets.chomp.upcase!
