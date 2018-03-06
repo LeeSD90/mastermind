@@ -20,7 +20,7 @@ require './logic.rb'
 
 		i = 1
 		catch :success do	
-			10002.times{ #todo change
+			1200.times{ #todo change
 				loop do
 					case mode
 					when 1
@@ -33,9 +33,10 @@ require './logic.rb'
 						i === 1 ? @guess = Logic.get_random_code(@@colors).join : @guess = Logic.ai_guess(@guess, @@colors, result)
 						break
 					end
-					
 				end
 				result = Logic.compare_guess(@guess, @code)
+				puts "\n"
+				print @code
 				puts "\nThe codebreaker guessed " + @guess + "\nColors correct: " + result[0].to_s + "\nPosition correct: " + result[1].to_s + "\nGuesses remaining: " + (12 - i).to_s
 				throw :success if result[1] == 4
 				i += 1

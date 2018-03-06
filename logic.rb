@@ -22,7 +22,7 @@ module Logic
 		color_correct = 0
 		index_correct = 0
 
-		code.uniq.each {|v| color_correct += chars.count(v)}
+		chars.uniq.each {|v| color_correct += code.count(v)}
 		
 		chars.each_with_index{ |v, i| if(chars[i] === code[i]) then index_correct += 1 end}
 
