@@ -14,7 +14,7 @@ module Logic
 			code[i] = $colors[rand(0..5)]
 		}
 
-		return code
+		return Code.new(code)
 	end
 
 	def Logic.compare_guess(guess, code)
@@ -31,11 +31,3 @@ module Logic
 	end
 
 end
-
-=begin
-	
-code: ryyb
-
-guess: rygc
-	
-=end

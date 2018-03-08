@@ -4,7 +4,6 @@ require './logic.rb'
 require './ai.rb'
 require './code.rb'
 	$colors = ["R", "G", "B", "Y", "P", "C"]
-	
 
 	def initialize(mode)
 		play(mode)
@@ -19,7 +18,7 @@ require './code.rb'
 		@code = set_code(mode)
 		@guess = []
 		result = []
-		puts @code.combination #remove
+
 		i = 1
 		catch :success do	
 			12.times{
@@ -39,7 +38,6 @@ require './code.rb'
 				end
 				result = Logic.compare_guess(@guess, @code)
 				puts "\n"
-				print @code.combination #remove
 				puts "\nThe codebreaker guessed " + @guess.combination + "\nColors correct: " + result[0].to_s + "\nPosition correct: " + result[1].to_s + "\nGuesses remaining: " + (12 - i).to_s
 				throw :success if result[1] == 4
 				i += 1
