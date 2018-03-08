@@ -19,7 +19,6 @@ class Ai
 						y.to_s.include?(x.to_s)
 					}
 				}
-				#time for a code class?
 				return Logic.map_index_to_colors([guess_index[0]+2, guess_index[0]+2, guess_index[1]+2, guess_index[1]+2])
 			#when 1
 			else return Logic.get_random_code().join

@@ -18,34 +18,24 @@ module Logic
 	end
 
 	def Logic.compare_guess(guess, code)
-		if guess.is_a?(String) then chars = guess.split('') else chars = guess end
 		color_correct = 0
 		index_correct = 0
+		guess = guess.combination.split("")
+		code = code.combination.split("")
 
-		chars.uniq.each {|v| color_correct += code.count(v)}
-		
-		chars.each_with_index{ |v, i| if(chars[i] === code[i]) then index_correct += 1 end}
+		color_correct = ((guess & code).flat_map{|x| [x]*[guess.count(x), code.count(x)].min}).count
+
+		guess.each_with_index{ |v, i| if(guess[i] === code[i]) then index_correct += 1 end}
 
 		return color_correct, index_correct
 	end
 
-	def Logic.map_colors_to_index(my_colors)
-		my_colors = my_colors.split("")
-		
-		my_colors.each_with_index{|v,i|
-
-			my_colors[i] = $colors.index(v)
-		}
-		return my_colors
-	end
-
-	def Logic.map_index_to_colors(my_index)
-
-		my_index.each_with_index{|v, i|
-			my_index[i] = $colors[v]
-		}
-
-		return my_index
-	end
-
 end
+
+=begin
+	
+code: ryyb
+
+guess: rygc
+	
+=end

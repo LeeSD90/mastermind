@@ -19,7 +19,7 @@ require './code.rb'
 		@code = set_code(mode)
 		@guess = []
 		result = []
-
+		puts @code.combination #remove
 		i = 1
 		catch :success do	
 			12.times{
@@ -28,19 +28,19 @@ require './code.rb'
 					when 1
 						@guess = gets.chomp.upcase!
 						if(Logic.check_entry(@guess)) then
+							@guess = Code.new(@guess)
 							break
 						else input_error
 						end
 					when 2
-						#i === 1 ? @guess = Logic.get_random_code().join : @guess = ai.guess(@guess, result)
-						@guess = ai.guess(@guess, result)
+						@guess = ai.guess(@guess, result) #return a code object here
 						break
 					end
 				end
-				result = Logic.compare_guess(@guess, @code.combination)
+				result = Logic.compare_guess(@guess, @code)
 				puts "\n"
 				print @code.combination #remove
-				puts "\nThe codebreaker guessed " + @guess + "\nColors correct: " + result[0].to_s + "\nPosition correct: " + result[1].to_s + "\nGuesses remaining: " + (12 - i).to_s
+				puts "\nThe codebreaker guessed " + @guess.combination + "\nColors correct: " + result[0].to_s + "\nPosition correct: " + result[1].to_s + "\nGuesses remaining: " + (12 - i).to_s
 				throw :success if result[1] == 4
 				i += 1
 			}
