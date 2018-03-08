@@ -16,6 +16,7 @@ require './code.rb'
 		mode === 1 ? mode_text = "guess" : (mode_text = "enter"; ai = Ai.new)
 		puts "#{mode_text} a 4-color combination\nFor example, to #{mode_text} red, green, blue, yellow enter RGBY\n".capitalize!
 		@code = set_code(mode)
+
 		@guess = []
 		result = []
 
@@ -32,7 +33,7 @@ require './code.rb'
 						else input_error
 						end
 					when 2
-						@guess = ai.guess(@guess, result) #return a code object here
+						@guess = ai.guess(@guess, result)
 						break
 					end
 				end

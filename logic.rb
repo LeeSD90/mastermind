@@ -20,6 +20,7 @@ module Logic
 	def Logic.compare_guess(guess, code)
 		color_correct = 0
 		index_correct = 0
+
 		guess = guess.combination.split("")
 		code = code.combination.split("")
 
