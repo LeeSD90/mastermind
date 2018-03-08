@@ -2,6 +2,7 @@ class Game
 require 'colorize'
 require './logic.rb'
 require './ai.rb'
+require './code.rb'
 	$colors = ["R", "G", "B", "Y", "P", "C"]
 	
 
@@ -31,14 +32,14 @@ require './ai.rb'
 						else input_error
 						end
 					when 2
-						#i === 1 ? @guess = Logic.get_random_code($colors).join : @guess = ai.guess(@guess, $colors, result)
-						@guess = ai.guess(@guess, $colors, result)
+						#i === 1 ? @guess = Logic.get_random_code().join : @guess = ai.guess(@guess, result)
+						@guess = ai.guess(@guess, result)
 						break
 					end
 				end
-				result = Logic.compare_guess(@guess, @code)
+				result = Logic.compare_guess(@guess, @code.combination)
 				puts "\n"
-				print @code #remove
+				print @code.combination #remove
 				puts "\nThe codebreaker guessed " + @guess + "\nColors correct: " + result[0].to_s + "\nPosition correct: " + result[1].to_s + "\nGuesses remaining: " + (12 - i).to_s
 				throw :success if result[1] == 4
 				i += 1
@@ -52,12 +53,12 @@ require './ai.rb'
 
 	def set_code(mode)
 		if(mode === 1) then
-			return Logic.get_random_code($colors)
+			return Code.new()
 		else
 			loop do
 				code = gets.chomp.upcase!
 				if(Logic.check_entry(code)) then
-					return code.split("")
+					return Code.new(code)
 					break
 				else input_error
 				end
