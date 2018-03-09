@@ -19,7 +19,15 @@ class Ai
 				}
 				next_guess = [$colors[$colors.index(guess.combination[0])+2],$colors[$colors.index(guess.combination[1])+2],$colors[$colors.index(guess.combination[2])+2],$colors[$colors.index(guess.combination[3])+2]].join
 				return Code.new(next_guess)
-			else return Code.new()
+			else 
+				@solutions.delete_if{|x|
+					if !(result == Logic.compare_guess(guess, Code.new(x)))
+						true
+					else
+						false
+					end
+				}
+				return Code.new(@solutions[0])
 			end
 		end
 	end

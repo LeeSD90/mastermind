@@ -3,6 +3,7 @@ require 'colorize'
 require './logic.rb'
 require './ai.rb'
 require './code.rb'
+require 'io/console'
 	$colors = ["R", "G", "B", "Y", "P", "C"]
 
 	def initialize(mode)
